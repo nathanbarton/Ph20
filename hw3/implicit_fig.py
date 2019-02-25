@@ -8,7 +8,7 @@ v0 = 0
 tmax = 25
 h = .05
 
-data_imp = sho_euler_implicit(x0,v0,tmax,h)
+data_imp = sho.sho_euler_implicit(x0,v0,tmax,h)
 time = np.linspace(0, tmax, int(tmax/h)+1)
 
 fig, axs = plt.subplots(2,1)
@@ -25,7 +25,7 @@ plt.savefig("fig/implicit_plot.eps", dpi=300)
 
 
 
-data_analytic = sho_analytic(x0,v0,tmax,h)
+data_analytic = sho.sho_analytic(x0,v0,tmax,h)
 global_error_imp = data_analytic - data_imp
 
 fig, axs = plt.subplots(2,1)
@@ -49,7 +49,7 @@ h_values = np.linspace(h_min, h_max, h_size)
 
 h_errors = np.zeros((2,h_size))
 for i in range(h_size):
-    h_errors[:,i] = np.amax(np.absolute(sho_analytic(x0,v0,tmax,h_values[i]) - sho_euler_implicit(x0,v0,tmax,h_values[i]) ), axis=1)
+    h_errors[:,i] = np.amax(np.absolute(sho.sho_analytic(x0,v0,tmax,h_values[i]) - sho.sho_euler_implicit(x0,v0,tmax,h_values[i]) ), axis=1)
     
 fig, axs = plt.subplots(2,1)
 

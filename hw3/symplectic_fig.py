@@ -8,8 +8,8 @@ v0 = 0
 tmax = 25
 h = .05
 
-data_exp = sho_euler_explicit(x0,v0,tmax,h)
-data_imp = sho_euler_implicit(x0,v0,tmax,h)
+data_exp = sho.sho_euler_explicit(x0,v0,tmax,h)
+data_imp = sho.sho_euler_implicit(x0,v0,tmax,h)
 time = np.linspace(0, tmax, int(tmax/h)+1)
 
 
@@ -28,7 +28,7 @@ axs[1].set_xlabel('Velocity')
 plt.savefig("fig/exp_imp_phase.eps", dpi=300)
 
 
-data_sym = sho_euler_symplectic(x0,v0,tmax,h)
+data_sym = sho.sho_euler_symplectic(x0,v0,tmax,h)
 
 fig, axs = plt.subplots()
 
@@ -43,6 +43,7 @@ plt.savefig("fig/symplectic_phase_plot.eps", dpi=300)
 
 energy_sym =  np.power(data_sym[0,:], 2) + np.power(data_sym[1,:], 2)
 
+plt.figure()
 plt.plot(time,energy_sym)
 plt.title('Symplectic Euler SHO energy')
 plt.ylabel('Total System Energy')
@@ -57,8 +58,8 @@ v0 = 0
 tmax = 10000
 h = .05
 
-data_sym_long = sho_euler_symplectic(x0,v0,tmax,h)
-data_analytic_long = sho_analytic(x0,v0,tmax,h)
+data_sym_long = sho.sho_euler_symplectic(x0,v0,tmax,h)
+data_analytic_long = sho.sho_analytic(x0,v0,tmax,h)
 
 time_long = np.linspace(0, tmax, int(tmax/h)+1)
 
